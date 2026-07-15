@@ -11,6 +11,7 @@ export function MobileActionBar() {
       className="md:hidden fixed bottom-0 left-0 right-0 z-30 bg-white border-t border-brand-stone/60 shadow-[0_-2px_8px_rgba(26,36,33,0.06)]"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
       aria-label="Quick clinic actions"
+      suppressHydrationWarning
     >
       <div className="flex items-stretch h-14">
         {navigationConfig.mobileActions.map((action, i) => {
