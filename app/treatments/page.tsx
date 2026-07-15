@@ -28,28 +28,28 @@ export default function TreatmentsPage() {
       id: "skin",
       title: "Medical Dermatology & Resurfacing",
       desc: "Comprehensive solutions for acne scars, melasma, barrier repair, and custom skin wellness.",
-      image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=1200",
+      image: "/images/aurevia_skin_dermatology_1784122198580.jpg",
       treatments: treatmentsData.filter(t => t.category === "skin"),
     },
     {
       id: "hair",
       title: "Clinical Trichology & Scalp Support",
       desc: "Advanced follicular assessments and hair loss therapies targeting density and scalp micro-environments.",
-      image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=1200",
+      image: "/images/aurevia_hair_trichology_1784122213035.jpg",
       treatments: treatmentsData.filter(t => t.category === "hair"),
     },
     {
       id: "laser",
       title: "Precision Energy-Based Lasers",
       desc: "Carefully configured clinical laser platforms for hair reduction and skin toning. Suitability assessed during individual consultation.",
-      image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=1200",
+      image: "/images/aurevia_laser_platform_1784122229157.jpg",
       treatments: treatmentsData.filter(t => t.category === "laser"),
     },
     {
       id: "aesthetics",
       title: "Refined, Natural Enhancement",
       desc: "Subtle anatomical restoration and facial balancing using premium injectable scaffolding.",
-      image: "https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&q=80&w=1200",
+      image: "/images/aurevia_aesthetic_art_1784122245484.jpg",
       treatments: treatmentsData.filter(t => t.category === "aesthetics"),
     }
   ];

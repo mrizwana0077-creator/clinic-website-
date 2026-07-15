@@ -265,7 +265,7 @@ export const doctorsData: Doctor[] = [
     areasOfInterest: ["Clinical Dermatology", "Acne Scar Remodeling", "Laser Pharmacology"],
     languages: ["English", "Kannada", "Hindi"],
     consultationApproach: "A thorough 30-minute diagnostic session focusing on medical history, current lifestyle factors, and high-magnification trichoscopy or dermatoscopy before outlining treatment directions.",
-    image: "https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=1000",
+    image: "/images/doctors/doctor-ananya-demo.png",
   },
   {
     id: "dr-meera-iyer",
@@ -275,7 +275,7 @@ export const doctorsData: Doctor[] = [
     areasOfInterest: ["Structural Facial Balancing", "Injectable Collagen Stimulators", "Melasma Management"],
     languages: ["English", "Tamil", "Kannada"],
     consultationApproach: "An anatomical facial-balancing analysis evaluating bone structure, fat pad placement, and skin quality to recommend subtle and precise intervention points.",
-    image: "https://images.unsplash.com/photo-1622253692010-333f2da6031d?auto=format&fit=crop&q=80&w=1000",
+    image: "/images/doctors/doctor-meera-demo.png",
   },
 ];
 
@@ -307,25 +307,37 @@ export const galleryData: GalleryItem[] = [
     id: "gallery-1",
     title: "Reception & Lounge",
     description: "A calm, clutter-free space designed with natural textures and soft light to set a peaceful tone from the moment you enter.",
-    image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/clinic/clinic-reception.png",
   },
   {
     id: "gallery-2",
-    title: "Private Consultation Suite",
-    description: "Where our specialist dermatologists conduct thorough, unhurried diagnostics and treatment planning sessions.",
-    image: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=1200",
+    title: "Waiting Lounge",
+    description: "A tranquil seating area with natural linen furnishings and soft daylight for a calm, welcoming arrival experience.",
+    image: "/images/clinic/clinic-waiting-lounge.png",
   },
   {
     id: "gallery-3",
-    title: "Advanced Laser Treatment Room",
-    description: "Equipped with precision clinical laser systems and advanced cooling technologies for safe, comfortable treatments.",
-    image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200",
+    title: "Private Consultation Suite",
+    description: "Where our specialist dermatologists conduct thorough, unhurried diagnostics and treatment planning sessions.",
+    image: "/images/clinic/clinic-consultation-room.png",
   },
   {
     id: "gallery-4",
-    title: "Clinical Procedure Room",
-    description: "Maintained under rigorous hospital-grade sterile protocols to ensure absolute safety during dermatological procedures.",
-    image: "https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&q=80&w=1200",
+    title: "Treatment Suite",
+    description: "A premium clinical treatment environment maintained under controlled protocols for precision dermal care.",
+    image: "/images/clinic/clinic-treatment-suite.png",
+  },
+  {
+    id: "gallery-5",
+    title: "Clinical Technology",
+    description: "Advanced skin assessment and imaging technology enabling precise diagnostics at every visit.",
+    image: "/images/technology/skin-assessment-technology.png",
+  },
+  {
+    id: "gallery-6",
+    title: "Interior Architecture",
+    description: "Considered spatial design with warm oak details and calm ambient lighting throughout the clinic.",
+    image: "/images/clinic/clinic-corridor.png",
   },
 ];
 
@@ -338,7 +350,7 @@ export const insightsData: Insight[] = [
     publishDate: "June 12, 2026",
     summary: "An evidence-based guide to why atrophic scars form and how modern dermatologists combine subcision and lasers to restore skin uniformity.",
     content: "Acne scarring is a complex structural challenge. When a severe acne cyst heals, it often leaves behind fibrotic bands that pull the skin surface down, creating depressed or atrophic scars. Modern clinical dermatology has moved away from aggressive single-modality resurfacing. Instead, we use a combined approach: subcision to gently release those deep fibrotic anchors, paired with fractional energy (like Microneedling RF) to rebuild cellular collagen structure from within. This combined methodology achieves far more predictable, natural smoothing with a fraction of the traditional recovery downtime.",
-    image: "https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/insights/article-acne-scars.png",
   },
   {
     id: "building-considered-hair-care-plan",
@@ -348,7 +360,7 @@ export const insightsData: Insight[] = [
     publishDate: "May 28, 2026",
     summary: "Ditch the commercial serums. Learn how clinical trichology stabilizes hair thinning by focusing on scalp micro-inflammation and cellular growth factors.",
     content: "Achieving healthy hair starts at the root—literally. Follicular thinning is driven by genetic DHT sensitivity, local inflammation, and micro-nutritional gaps. Rather than relying on commercial shampoos, an effective hair-stabilization plan relies on clinically validated topical therapies, follicle-level growth factor micro-infusions, and clarifying treatments that support a balanced scalp microbiome. Regular trichoscopy allows us to track follicle diameter and growth phases over time, making real-time adjustments before permanent miniaturization occurs.",
-    image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/insights/article-hair-care.png",
   },
   {
     id: "what-to-expect-during-skin-consultation",
@@ -358,7 +370,7 @@ export const insightsData: Insight[] = [
     publishDate: "May 15, 2026",
     summary: "Demystifying your first visit. Why our dermatologists spend 30 minutes analyzing your barrier and lifestyle before discussing any procedural treatment.",
     content: "At Aurevia, we believe a clinical consultation should never be a sales pitch. Your initial visit is a comprehensive 30-minute diagnostic session. Our specialist dermatologists will perform a deep barrier assessment, review your full medical history, and analyze your current lifestyle and skincare ingredients. Only when we fully understand the underlying triggers of your concern do we present a balanced, conservative treatment roadmap. This ensuring you never undergo unnecessary procedures and receive care tailored precisely to your biology.",
-    image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/insights/article-consultation-guide.png",
   },
 ];
 

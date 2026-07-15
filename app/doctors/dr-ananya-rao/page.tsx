@@ -32,8 +32,8 @@ export default function DrAnanyaPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-5 relative aspect-[3/4] w-full bg-brand-stone/10 overflow-hidden rounded-sm">
               <ResponsiveMedia 
-                src="https://images.unsplash.com/photo-1594824813573-246434de83fb?auto=format&fit=crop&q=80&w=1000" 
-                alt="Dr Ananya Rao"
+                src="/images/doctors/doctor-ananya-demo.png" 
+                alt="Demonstration portrait for a fictional clinic specialist profile. Not a real doctor."
                 fill
               />
             </div>

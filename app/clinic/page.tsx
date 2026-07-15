@@ -41,25 +41,25 @@ export default function ClinicExperiencePage() {
               {
                 title: "Reception & Tranquil Lounge",
                 desc: "A warm, ivory-textured welcoming space featuring soft timber elements, comfortable seats, and botanical accents designed to help you calm and rest upon arrival.",
-                image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200",
+                image: "/images/clinic/clinic-reception.png",
                 fallback: "Aurevia Reception Suite"
               },
               {
                 title: "Diagnostic Consultation Suites",
                 desc: "Completely soundproofed, comfortable diagnostic rooms where our consulting dermatologists perform unhurried assessments using advanced dermatoscopy.",
-                image: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=1200",
+                image: "/images/clinic/clinic-consultation-room.png",
                 fallback: "Consultation Suite"
               },
               {
                 title: "Advanced Laser Procedure Room",
                 desc: "Maintained under controlled sanitary protocols and equipped with precision clinical laser systems. Protocol details require clinic verification.",
-                image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200",
+                image: "/images/clinic/clinic-treatment-suite.png",
                 fallback: "Laser Procedure Room"
               },
               {
                 title: "Post-Procedure Recovery Bay",
                 desc: "A quiet, private lounge space where patients relax after procedures while receiving custom barrier cooling elements and a warm diagnostic review.",
-                image: "https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&q=80&w=1200",
+                image: "/images/clinic/clinic-waiting-lounge.png",
                 fallback: "Post-Procedure Bay"
               }
             ].map((room, idx) => (

@@ -85,8 +85,8 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-6 relative aspect-[4/3] w-full bg-brand-stone/10 overflow-hidden rounded-sm">
               <ResponsiveMedia 
-                src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200" 
-                alt="Aurevia private consultation suite"
+                src="/images/about/about-clinical-environment.png" 
+                alt="Private clinical consultation room at Aurevia with warm natural light"
                 fill
               />
             </div>

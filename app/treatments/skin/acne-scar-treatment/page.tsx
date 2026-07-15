@@ -66,8 +66,8 @@ export default function AcneScarTreatmentPage() {
 
             <div className="lg:col-span-5 relative aspect-[4/5] bg-brand-stone/10 overflow-hidden rounded-sm">
               <ResponsiveMedia 
-                src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=1200" 
-                alt="Aurevia advanced microneedling RF platform in treatment suite"
+                src="/images/treatments/acne-scar-consultation.png" 
+                alt="Dermatology consultation setting with clinical assessment instruments at Aurevia"
                 fill
               />
             </div>
