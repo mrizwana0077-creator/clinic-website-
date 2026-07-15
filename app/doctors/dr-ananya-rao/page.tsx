@@ -40,10 +40,10 @@ export default function DrAnanyaPage() {
 
             <div className="lg:col-span-7">
               <Stack gap="md">
-                <Eyebrow>Clinic Co-Founder</Eyebrow>
+                <Eyebrow>Consultant Dermatology Profile — Demonstration</Eyebrow>
                 <Heading level={1} size="xl">Dr Ananya Rao</Heading>
                 <span className="text-xs font-mono tracking-wider text-brand-sage-dark uppercase block -mt-2">
-                  Senior Consultant Dermatologist
+                  Skin, Hair and Aesthetic Consultation
                 </span>
                 
                 <BodyText size="lg" muted className="mt-2">
@@ -52,11 +52,11 @@ export default function DrAnanyaPage() {
 
                 <div className="grid grid-cols-2 gap-4 py-4 border-y border-brand-stone/30 text-xs font-mono text-brand-text-muted">
                   <div>
-                    <span className="block opacity-60 uppercase text-[10px] tracking-wider">Experience</span>
-                    <span className="text-brand-green-deep font-semibold">12+ Years Clinical Practice</span>
+                    <span className="block opacity-60 uppercase text-[10px] tracking-wider">Consultation approach</span>
+                    <span className="text-brand-green-deep font-semibold">Diagnostics first</span>
                   </div>
                   <div>
-                    <span className="block opacity-60 uppercase text-[10px] tracking-wider">Languages Spoken</span>
+                    <span className="block opacity-60 uppercase text-[10px] tracking-wider">Languages spoken</span>
                     <span className="text-brand-green-deep font-semibold">English, Kannada, Hindi</span>
                   </div>
                 </div>

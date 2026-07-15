@@ -52,7 +52,7 @@ export default function ClinicExperiencePage() {
               },
               {
                 title: "Advanced Laser Procedure Room",
-                desc: "Maintained under rigorous hospital-grade sanitary parameters, equipped with state-of-the-art precision controlled energy laser systems.",
+                desc: "Maintained under controlled sanitary protocols and equipped with precision clinical laser systems. Protocol details require clinic verification.",
                 image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200",
                 fallback: "Laser Procedure Room"
               },

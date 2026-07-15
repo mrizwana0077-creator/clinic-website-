@@ -3,18 +3,23 @@
 
 @theme {
   /* Brand Colors */
-  --color-brand-ivory: #F9F8F6;
-  --color-brand-stone: #E5E4E2;
-  --color-brand-sand: #D4C3A3;
-  --color-brand-sage: #7B8F82;
-  --color-brand-sage-dark: #5A6D60;
-  --color-brand-green-deep: #1A2721;
-  --color-brand-text-main: #2C332F;
-  --color-brand-text-muted: #5C6661;
+  --color-brand-ivory: #F9F8F5;
+  --color-brand-ivory-dark: #F3F1ED;
+  --color-brand-stone: #E2E0DC;
+  --color-brand-stone-dark: #CCCAC5;
+  --color-brand-sand: #C9B48E;
+  --color-brand-sage: #768A7E;
+  --color-brand-sage-dark: #4F6558;
+  --color-brand-green-deep: #192421;
+  --color-brand-text-main: #28312B;
+  --color-brand-text-muted: #596159;
 
   /* Typography */
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
+
+  /* Spacing & radii */
+  --radius: 0.125rem;
 }
 
 @layer base {
@@ -40,5 +45,15 @@
   /* Accessible focus indicators */
   *:focus-visible {
     @apply outline-none ring-2 ring-brand-sage ring-offset-2 ring-offset-[var(--background)];
+  }
+
+  /* Typographic defaults */
+  p {
+    @apply leading-relaxed;
+  }
+
+  /* Prevent horizontal overflow */
+  html, body {
+    @apply overflow-x-hidden;
   }
 }

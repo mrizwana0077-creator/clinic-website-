@@ -41,7 +41,7 @@ export default function TreatmentsPage() {
     {
       id: "laser",
       title: "Precision Energy-Based Lasers",
-      desc: "Gold-standard laser wavelengths safe for all Fitzpatrick skin types, targeting hair reduction and tone.",
+      desc: "Carefully configured clinical laser platforms for hair reduction and skin toning. Suitability assessed during individual consultation.",
       image: "https://images.unsplash.com/photo-1519699047748-de8e457a634e?auto=format&fit=crop&q=80&w=1200",
       treatments: treatmentsData.filter(t => t.category === "laser"),
     },
@@ -106,9 +106,9 @@ export default function TreatmentsPage() {
                               {t.shortDescription}
                             </p>
                             <div className="flex flex-wrap gap-4 mt-2 text-[10px] text-brand-text-muted font-mono">
-                              <span>Downtime: {t.downtime}</span>
+                              <span>Recovery: varies by individual response</span>
                               <span>•</span>
-                              <span>Expected sessions: {t.expectedSessions}</span>
+                              <span>Treatment planning: discussed after assessment</span>
                             </div>
                           </Stack>
                           <Button as="link" href={`/treatments/${cat.id}/${t.id}`} variant="quiet" className="shrink-0 text-xs mt-1">

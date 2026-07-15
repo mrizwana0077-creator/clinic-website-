@@ -40,20 +40,16 @@ export default function AcneScarTreatmentPage() {
                 
                 <div className="flex flex-wrap gap-6 mt-4 text-xs font-mono text-brand-text-muted">
                   <div>
-                    <span className="block opacity-60 uppercase text-[10px] tracking-wider">Downtime</span>
-                    <span className="text-brand-green-deep font-semibold">3 to 5 days</span>
+                    <span className="block opacity-60 uppercase text-[10px] tracking-wider">Recovery considerations</span>
+                    <span className="text-brand-green-deep font-semibold">Discussed at consultation</span>
                   </div>
                   <div>
-                    <span className="block opacity-60 uppercase text-[10px] tracking-wider">Expected Sessions</span>
-                    <span className="text-brand-green-deep font-semibold">3 to 5 sessions</span>
-                  </div>
-                  <div>
-                    <span className="block opacity-60 uppercase text-[10px] tracking-wider">Interval</span>
-                    <span className="text-brand-green-deep font-semibold">4 to 6 weeks</span>
+                    <span className="block opacity-60 uppercase text-[10px] tracking-wider">Treatment planning</span>
+                    <span className="text-brand-green-deep font-semibold">Individual assessment required</span>
                   </div>
                   <div>
                     <span className="block opacity-60 uppercase text-[10px] tracking-wider">Supervision</span>
-                    <span className="text-brand-green-deep font-semibold">Qualified Dermatologist</span>
+                    <span className="text-brand-green-deep font-semibold">Qualified dermatologist</span>
                   </div>
                 </div>
 

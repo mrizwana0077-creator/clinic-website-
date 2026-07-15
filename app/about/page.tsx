@@ -95,10 +95,10 @@ export default function AboutPage() {
                 <span className="text-xs font-mono tracking-wider text-brand-sage-dark uppercase">Our Governance</span>
                 <Heading level={2} size="lg">Supervised clinical environments</Heading>
                 <BodyText size="md" muted>
-                  Our clinic is maintained under strict sterile and technical standards. Every equipment system is calibrated according to global safety parameters, ensuring precision energy delivery and absolute patient comfort.
+                  Our clinic is maintained under controlled clinical standards. Equipment calibration and procedural protocols require clinic verification before production. Our focus is on professional accountability and patient safety above all else.
                 </BodyText>
                 <BodyText size="md" muted>
-                  We focus on professional accountability. All staff members undergo continuous clinical coaching, and we strictly use FDA-approved or certified biocompatible compounds to restore structural volumes.
+                  We use certified biocompatible compounds for structural restoration. All treatment formulations and clinical approaches are discussed openly during your consultation session.
                 </BodyText>
                 <div className="pt-4">
                   <Button as="link" href="/doctors" variant="primary">

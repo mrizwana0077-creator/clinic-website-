@@ -2,113 +2,102 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { 
-  Container, 
-  Section, 
-  Stack, 
-  Grid, 
-  Heading, 
-  Eyebrow, 
-  BodyText, 
-  Button, 
-  Card, 
+import Link from "next/link";
+import {
+  Container,
+  Section,
+  Stack,
+  Grid,
+  Heading,
+  Eyebrow,
+  BodyText,
+  Button,
+  Card,
   CardContent,
-  ResponsiveMedia, 
+  ResponsiveMedia,
   SectionHeader,
-  SplitSection 
 } from "@/components/primitives";
-import { 
-  Check, 
-  ShieldCheck, 
-  ArrowRight, 
-  Plus, 
-  Minus, 
-  Activity, 
-  User, 
-  Sparkles, 
-  Flame, 
-  BookOpen, 
-  Calendar,
-  Lock
+import {
+  Check,
+  ShieldCheck,
+  ArrowRight,
+  Plus,
+  Minus,
+  Activity,
+  User,
+  Lock,
+  BookOpen,
 } from "lucide-react";
-import { 
-  treatmentsData, 
-  concernsData, 
-  doctorsData, 
-  technologiesData, 
-  galleryData, 
-  insightsData, 
+import {
+  treatmentsData,
+  concernsData,
+  doctorsData,
+  technologiesData,
+  insightsData,
   faqsData,
-  demoMetadata
 } from "@/config/demoData";
+import { clinicConfig } from "@/config/clinic";
 import { motion, AnimatePresence } from "motion/react";
 
 export function HomepageSections() {
   const [activeCategory, setActiveCategory] = useState<string>("all");
   const [openFaqId, setOpenFaqId] = useState<string | null>(null);
 
-  const filteredTreatments = activeCategory === "all" 
-    ? treatmentsData.filter(t => t.isFeatured)
-    : treatmentsData.filter(t => t.category === activeCategory);
+  const filteredTreatments =
+    activeCategory === "all"
+      ? treatmentsData.filter((t) => t.isFeatured)
+      : treatmentsData.filter((t) => t.category === activeCategory);
 
   const toggleFaq = (id: string) => {
-    setOpenFaqId(prev => prev === id ? null : id);
+    setOpenFaqId((prev) => (prev === id ? null : id));
   };
 
   return (
     <>
-      {/* SECTION 1: CREDENTIALS & TRUST BAR */}
-      <Section spacing="compact" className="border-y border-brand-stone/30 bg-brand-stone/10">
+      {/* ── CREDENTIALS STRIP ── */}
+      <Section spacing="compact" className="border-y border-brand-stone/40 bg-brand-stone/10">
         <Container>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 py-4">
-            <div className="flex gap-4 items-start">
-              <div className="p-2 rounded-sm bg-brand-sage/10 text-brand-sage-dark shrink-0">
-                <ShieldCheck className="w-5 h-5" />
+          <div className="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-brand-stone/40 py-2">
+            {[
+              {
+                icon: ShieldCheck,
+                title: "Dermatologist led",
+                body: "Every care path is designed and supervised by qualified specialist doctors.",
+              },
+              {
+                icon: Activity,
+                title: "Evidence based",
+                body: "Clinically proven technologies and medical-grade protocols.",
+              },
+              {
+                icon: User,
+                title: "Completely private",
+                body: "All consultations and procedures take place in private, secure clinical suites.",
+              },
+            ].map(({ icon: Icon, title, body }) => (
+              <div key={title} className="flex gap-4 items-start px-6 py-6 md:py-4">
+                <div className="p-2 bg-brand-sage/10 text-brand-sage-dark shrink-0">
+                  <Icon className="w-5 h-5" aria-hidden="true" />
+                </div>
+                <div>
+                  <p className="font-serif text-base font-medium text-brand-green-deep mb-0.5">{title}</p>
+                  <p className="text-xs text-brand-text-muted leading-relaxed">{body}</p>
+                </div>
               </div>
-              <div>
-                <span className="font-serif text-lg font-medium text-brand-green-deep block mb-1">Dermatologist Led</span>
-                <p className="text-xs text-brand-text-muted leading-relaxed">
-                  Every care path is designed and supervised by qualified medical specialist doctors.
-                </p>
-              </div>
-            </div>
-            
-            <div className="flex gap-4 items-start">
-              <div className="p-2 rounded-sm bg-brand-sage/10 text-brand-sage-dark shrink-0">
-                <Activity className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="font-serif text-lg font-medium text-brand-green-deep block mb-1">Evidence Based</span>
-                <p className="text-xs text-brand-text-muted leading-relaxed">
-                  We use clinically proven technologies and strictly medical-grade protocols.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex gap-4 items-start">
-              <div className="p-2 rounded-sm bg-brand-sage/10 text-brand-sage-dark shrink-0">
-                <User className="w-5 h-5" />
-              </div>
-              <div>
-                <span className="font-serif text-lg font-medium text-brand-green-deep block mb-1">Completely Private</span>
-                <p className="text-xs text-brand-text-muted leading-relaxed">
-                  All consultations and procedures happen in private, secure medical suites.
-                </p>
-              </div>
-            </div>
+            ))}
           </div>
         </Container>
       </Section>
 
-      {/* SECTION 2: TREATMENT-CATEGORY DISCOVERY */}
+      {/* ── TREATMENT CATEGORY DISCOVERY ── */}
       <Section spacing="default" surface="ivory">
         <Container>
           <SectionHeader
             eyebrow="Clinical Portfolio"
             title="Our treatment categories"
-            description="We offer structured specialist care across four core clinical disciplines, focusing on natural outcomes and skin barrier health."
+            description="Specialist care across four core clinical disciplines, focused on natural outcomes and skin barrier health."
             layout="split"
-            className="mb-12 md:mb-16"
+            className="mb-12 md:mb-14"
           />
 
           <Grid cols={4} gap="lg">
@@ -118,35 +107,35 @@ export function HomepageSections() {
                 href: "/treatments/skin",
                 desc: "Medical dermatology and advanced resurfacing for chronic conditions and textural integrity.",
                 image: "/images/aurevia_skin_dermatology_1784122198580.jpg",
-                fallback: "Aurevia medical skin assessment",
-                badge: "Dermatology"
+                fallback: "Aurevia skin assessment",
+                badge: "Dermatology",
               },
               {
                 title: "Hair",
                 href: "/treatments/hair",
-                desc: "Clinical trichology, medical-grade scalp support, and scientifically validated thinning solutions.",
+                desc: "Clinical trichology, scalp support, and scientifically validated thinning solutions.",
                 image: "/images/aurevia_hair_trichology_1784122213035.jpg",
-                fallback: "Aurevia hair follicle analysis",
-                badge: "Trichology"
+                fallback: "Aurevia hair trichology",
+                badge: "Trichology",
               },
               {
                 title: "Laser",
                 href: "/treatments/laser",
-                desc: "Precision energy-based platforms configured specifically for safe, high-efficacy dermal therapy.",
+                desc: "Precision energy-based platforms configured for safe, high-efficacy dermal therapy.",
                 image: "/images/aurevia_laser_platform_1784122229157.jpg",
-                fallback: "Precision medical laser system",
-                badge: "Precision Energy"
+                fallback: "Precision laser platform",
+                badge: "Precision Energy",
               },
               {
                 title: "Aesthetics",
                 href: "/treatments/aesthetics",
-                desc: "Subtle structural restoration and facial balancing designed around unique anatomical scaffolding.",
+                desc: "Subtle structural restoration and facial balancing designed around individual anatomy.",
                 image: "/images/aurevia_aesthetic_art_1784122245484.jpg",
                 fallback: "Refined aesthetic care",
-                badge: "Anatomical"
-              }
+                badge: "Anatomical",
+              },
             ].map((cat, idx) => (
-              <Card key={idx} surface="white" interaction="hover" className="flex flex-col h-full group">
+              <Card key={idx} surface="white" interaction="hover" className="flex flex-col h-full group overflow-hidden border border-brand-stone/40 hover:border-brand-sand transition-all duration-300">
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-brand-stone/20">
                   <Image
                     src={cat.image}
@@ -154,11 +143,11 @@ export function HomepageSections() {
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     priority={idx < 2}
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    referrerPolicy="no-referrer"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    onError={() => {}}
                   />
-                  <div className="absolute top-4 left-4">
-                    <span className="text-[10px] tracking-widest uppercase bg-brand-green-deep text-white px-2.5 py-1 font-mono rounded-sm">
+                  <div className="absolute top-3 left-3">
+                    <span className="text-[10px] tracking-widest uppercase bg-brand-green-deep text-white px-2.5 py-1 font-mono">
                       {cat.badge}
                     </span>
                   </div>
@@ -168,14 +157,16 @@ export function HomepageSections() {
                     <Heading level={3} size="sm" className="group-hover:text-brand-sage-dark transition-colors">
                       {cat.title}
                     </Heading>
-                    <p className="text-sm text-brand-text-muted leading-relaxed">
-                      {cat.desc}
-                    </p>
+                    <p className="text-sm text-brand-text-muted leading-relaxed">{cat.desc}</p>
                   </Stack>
-                  <div className="pt-6 mt-6 border-t border-brand-stone/30">
-                    <Button as="link" href={cat.href} variant="quiet" className="group-hover:translate-x-1 transition-transform duration-200">
-                      Explore category <ArrowRight className="w-4 h-4 ml-1 inline-block" />
-                    </Button>
+                  <div className="pt-5 mt-5 border-t border-brand-stone/30">
+                    <Link
+                      href={cat.href}
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-green-deep hover:text-brand-sage-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage rounded-sm group/link"
+                    >
+                      Explore category
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" aria-hidden="true" />
+                    </Link>
                   </div>
                 </CardContent>
               </Card>
@@ -184,47 +175,46 @@ export function HomepageSections() {
         </Container>
       </Section>
 
-      {/* SECTION 3: CONCERN-LED DISCOVERY */}
-      <Section spacing="default" surface="stone" className="relative overflow-hidden bg-brand-stone/30">
+      {/* ── CONCERN-LED DISCOVERY ── */}
+      <Section spacing="default" className="bg-brand-ivory-dark">
         <Container>
           <SectionHeader
             eyebrow="Targeted Solutions"
             title="Discover care by concern"
-            description="We guide our patients based on their current clinical concerns, ensuring a balanced, diagnosis-first assessment before any treatment is suggested."
+            description="We guide patients based on their current clinical concerns, ensuring a diagnosis-first assessment before any treatment is suggested."
             layout="stacked"
             align="center"
             className="mb-12 text-center"
           />
 
-          <Grid cols={3} gap="md">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-brand-stone/50">
             {concernsData.map((con) => (
-              <Card key={con.id} surface="white" className="p-8 border border-brand-stone/60">
-                <Stack gap="md" className="h-full justify-between">
-                  <Stack gap="xs">
-                    <span className="text-[10px] tracking-widest font-mono text-brand-sage-dark uppercase">
-                      {con.category}
-                    </span>
-                    <Heading level={3} size="sm" className="mb-2">
-                      {con.title}
-                    </Heading>
-                    <p className="text-sm text-brand-text-muted leading-relaxed">
-                      {con.shortDescription}
-                    </p>
-                  </Stack>
-                  <div className="pt-6 border-t border-brand-stone/20 flex justify-between items-center">
-                    <span className="text-xs text-brand-text-muted italic">Evidence-backed guides</span>
-                    <Button as="link" href={`/concerns/${con.id}`} variant="quiet">
-                      View guidance <ArrowRight className="w-4 h-4 ml-1 inline-block" />
-                    </Button>
-                  </div>
-                </Stack>
-              </Card>
+              <div key={con.id} className="bg-brand-ivory p-8 flex flex-col justify-between gap-6">
+                <div>
+                  <span className="text-[10px] tracking-widest font-mono text-brand-sage-dark uppercase block mb-2">
+                    {con.category}
+                  </span>
+                  <Heading level={3} size="sm" className="mb-3">
+                    {con.title}
+                  </Heading>
+                  <p className="text-sm text-brand-text-muted leading-relaxed">
+                    {con.shortDescription}
+                  </p>
+                </div>
+                <Link
+                  href={`/concerns/${con.id}`}
+                  className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-green-deep hover:text-brand-sage-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage rounded-sm group"
+                >
+                  View clinical guidance
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
+                </Link>
+              </div>
             ))}
-          </Grid>
+          </div>
         </Container>
       </Section>
 
-      {/* SECTION 4: SIGNATURE TREATMENTS */}
+      {/* ── SIGNATURE TREATMENTS ── */}
       <Section spacing="default" surface="ivory">
         <Container>
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6">
@@ -233,28 +223,18 @@ export function HomepageSections() {
               title="Signature treatments"
               description="A selected preview of our core specialist-supervised dermatological and aesthetic interventions."
             />
-            <div className="flex flex-wrap gap-2">
-              <button 
-                onClick={() => setActiveCategory("all")}
-                className={`px-4 py-2 text-xs font-mono tracking-wider uppercase rounded-sm border transition-all ${
-                  activeCategory === "all" 
-                    ? "bg-brand-green-deep text-white border-brand-green-deep" 
-                    : "bg-white text-brand-text-muted border-brand-stone hover:border-brand-sand"
-                }`}
-              >
-                Featured
-              </button>
-              {["skin", "hair", "laser", "aesthetics"].map((cat) => (
-                <button 
+            <div className="flex flex-wrap gap-2 shrink-0">
+              {["all", "skin", "hair", "laser", "aesthetics"].map((cat) => (
+                <button
                   key={cat}
                   onClick={() => setActiveCategory(cat)}
-                  className={`px-4 py-2 text-xs font-mono tracking-wider uppercase rounded-sm border transition-all ${
-                    activeCategory === cat 
-                      ? "bg-brand-green-deep text-white border-brand-green-deep" 
-                      : "bg-white text-brand-text-muted border-brand-stone hover:border-brand-sand"
+                  className={`px-4 py-1.5 text-[11px] font-mono tracking-wider uppercase border transition-all rounded-sm ${
+                    activeCategory === cat
+                      ? "bg-brand-green-deep text-white border-brand-green-deep"
+                      : "bg-white text-brand-text-muted border-brand-stone hover:border-brand-stone-dark"
                   }`}
                 >
-                  {cat}
+                  {cat === "all" ? "Featured" : cat}
                 </button>
               ))}
             </div>
@@ -263,46 +243,48 @@ export function HomepageSections() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeCategory}
-              initial={{ opacity: 0, y: 15 }}
+              initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }}
-              transition={{ duration: 0.3 }}
+              exit={{ opacity: 0, y: -12 }}
+              transition={{ duration: 0.25 }}
             >
               <Grid cols={2} gap="lg">
                 {filteredTreatments.map((treat) => (
-                  <Card key={treat.id} surface="white" className="p-8 border border-brand-stone/40 hover:border-brand-sand transition-all duration-300">
-                    <Stack gap="md" className="h-full justify-between">
-                      <Stack gap="xs">
-                        <span className="text-[10px] tracking-widest font-mono text-brand-sage-dark uppercase">
-                          Category · {treat.category}
-                        </span>
-                        <Heading level={3} size="md" className="mb-2">
-                          {treat.title}
-                        </Heading>
-                        <p className="text-sm text-brand-text-muted leading-relaxed">
-                          {treat.shortDescription}
-                        </p>
-                      </Stack>
-                      
-                      <div className="grid grid-cols-2 gap-4 py-4 my-2 border-y border-brand-stone/30">
+                  <div
+                    key={treat.id}
+                    className="bg-white border border-brand-stone/40 hover:border-brand-sand transition-all duration-300 p-8 flex flex-col justify-between gap-6"
+                  >
+                    <div>
+                      <span className="text-[10px] tracking-widest font-mono text-brand-sage-dark uppercase block mb-2">
+                        {treat.category}
+                      </span>
+                      <Heading level={3} size="md" className="mb-3">
+                        {treat.title}
+                      </Heading>
+                      <p className="text-sm text-brand-text-muted leading-relaxed mb-5">
+                        {treat.shortDescription}
+                      </p>
+                      <div className="grid grid-cols-2 gap-4 py-4 border-y border-brand-stone/30">
                         <div>
-                          <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block">Downtime</span>
-                          <span className="text-xs text-brand-green-deep font-medium">{treat.downtime}</span>
+                          <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block mb-1">Treatment planning</span>
+                          <span className="text-xs text-brand-green-deep">Discussed after individual assessment.</span>
                         </div>
                         <div>
-                          <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block">Expected Sessions</span>
-                          <span className="text-xs text-brand-green-deep font-medium">{treat.expectedSessions}</span>
+                          <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block mb-1">Recovery considerations</span>
+                          <span className="text-xs text-brand-green-deep">Vary according to procedure and individual response.</span>
                         </div>
                       </div>
-
-                      <div className="flex justify-between items-center pt-2">
-                        <span className="text-xs text-brand-text-muted">Specialist Supervised</span>
-                        <Button as="link" href={`/treatments/${treat.category}/${treat.id}`} variant="secondary" size="sm">
-                          Clinical details
-                        </Button>
-                      </div>
-                    </Stack>
-                  </Card>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <span className="text-xs text-brand-text-muted">Specialist supervised</span>
+                      <Link
+                        href={`/treatments/${treat.category}/${treat.id}`}
+                        className="inline-flex items-center justify-center h-8 px-4 text-xs font-medium border border-brand-stone text-brand-green-deep hover:bg-brand-ivory hover:border-brand-stone-dark transition-all rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage"
+                      >
+                        Clinical details
+                      </Link>
+                    </div>
+                  </div>
                 ))}
               </Grid>
             </motion.div>
@@ -310,374 +292,390 @@ export function HomepageSections() {
         </Container>
       </Section>
 
-      {/* SECTION 5: MEET THE SPECIALISTS */}
-      <Section spacing="default" surface="stone" className="bg-brand-stone/20">
+      {/* ── SPECIALISTS ── */}
+      <Section spacing="default" className="bg-brand-green-deep">
         <Container>
           <SectionHeader
             eyebrow="Medical Leadership"
             title="Meet our specialists"
-            description="Our dermatologists are highly trained specialist doctors committed to providing evidence-led, clinically responsible care."
+            description="Our consulting dermatologists are specialist doctors committed to evidence-led, clinically responsible care."
             layout="split"
-            className="mb-12 md:mb-16"
+            className="mb-12 md:mb-16 [&_h2]:text-white [&_p]:text-white/65 [&_span]:text-brand-sand"
           />
 
           <Grid cols={2} gap="lg">
             {doctorsData.map((doc) => (
-              <Card key={doc.id} surface="white" className="flex flex-col md:flex-row h-full overflow-hidden border border-brand-stone/50">
-                <div className="relative w-full md:w-[40%] aspect-[3/4] bg-brand-stone/10 shrink-0">
+              <div key={doc.id} className="flex flex-col md:flex-row bg-white/5 border border-white/10 overflow-hidden group hover:border-white/20 transition-colors duration-300">
+                {/* Portrait placeholder */}
+                <div className="w-full md:w-[38%] aspect-[3/2] md:aspect-auto relative bg-brand-stone/20 shrink-0">
                   <ResponsiveMedia
                     src={doc.image}
-                    alt={doc.name}
+                    alt={`Portrait placeholder for ${doc.name} — demonstration profile`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1024px) 30vw, 20vw"
                     fallbackText={doc.name}
+                    className="object-top"
                   />
-                  <div className="absolute top-4 left-4 md:hidden">
-                    <span className="text-[10px] tracking-widest font-mono uppercase bg-brand-green-deep text-white px-2.5 py-1">
-                      Specialist
-                    </span>
-                  </div>
                 </div>
-                <CardContent className="flex-1 flex flex-col justify-between p-8">
-                  <Stack gap="md">
-                    <div>
-                      <Heading level={3} size="md" className="mb-1">
-                        {doc.name}
-                      </Heading>
-                      <span className="text-xs tracking-wider font-mono text-brand-sage-dark uppercase block">
-                        {doc.role}
-                      </span>
-                    </div>
-
-                    <p className="text-sm italic text-brand-text-muted leading-relaxed">
+                {/* Content */}
+                <div className="flex-1 flex flex-col justify-between p-8 gap-6">
+                  <div>
+                    <Heading level={3} size="md" className="text-white mb-1">
+                      {doc.name}
+                    </Heading>
+                    <span className="text-[10px] tracking-wider font-mono text-brand-sage uppercase block mb-5">
+                      Consultant Dermatology Profile — Demonstration
+                    </span>
+                    <p className="text-sm italic text-white/60 leading-relaxed mb-5">
                       &ldquo;{doc.carePhilosophy}&rdquo;
                     </p>
-
-                    <div>
-                      <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block mb-1">Areas of Interest</span>
+                    <div className="mb-4">
+                      <span className="text-[10px] uppercase tracking-wider font-mono text-white/40 block mb-2">Areas of interest</span>
                       <div className="flex flex-wrap gap-1.5">
                         {doc.areasOfInterest.map((interest, i) => (
-                          <span key={i} className="text-xs bg-brand-stone/50 px-2.5 py-0.5 text-brand-text-main rounded-sm font-sans">
+                          <span key={i} className="text-xs bg-white/10 text-white/70 px-2.5 py-0.5 font-sans">
                             {interest}
                           </span>
                         ))}
                       </div>
                     </div>
-
                     <div>
-                      <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block">Languages Spoken</span>
-                      <span className="text-xs text-brand-text-main">{doc.languages.join(", ")}</span>
+                      <span className="text-[10px] uppercase tracking-wider font-mono text-white/40 block mb-0.5">Languages</span>
+                      <span className="text-xs text-white/60">{doc.languages.join(", ")}</span>
                     </div>
-                  </Stack>
-
-                  <div className="pt-6 mt-6 border-t border-brand-stone/30">
-                    <Button as="link" href={`/doctors/${doc.id}`} variant="quiet">
-                      Read full biography <ArrowRight className="w-4 h-4 ml-1 inline-block" />
-                    </Button>
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="pt-5 border-t border-white/10">
+                    <Link
+                      href={`/doctors/${doc.id}`}
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-sage hover:text-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage rounded-sm group/link"
+                    >
+                      View full profile
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             ))}
           </Grid>
         </Container>
       </Section>
 
-      {/* SECTION 6: CONSULTATION JOURNEY */}
+      {/* ── CONSULTATION JOURNEY ── */}
       <Section spacing="default" surface="ivory">
         <Container>
           <SectionHeader
             eyebrow="Clinical Framework"
             title="The consultation journey"
-            description="Our structured care delivery pathways ensure every diagnostic parameter is accounted for before clinical steps begin."
+            description="A structured care pathway that begins with listening and ends with considered follow-up."
             layout="stacked"
             align="center"
             className="mb-16 text-center"
           />
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 relative">
-            <div className="hidden md:block absolute top-[2.25rem] left-[10%] right-[10%] h-[1px] bg-brand-stone/60" aria-hidden="true" />
-            
+            {/* Connector line */}
+            <div className="hidden md:block absolute top-[1.6rem] left-[12%] right-[12%] h-px bg-brand-stone/60" aria-hidden="true" />
+
             {[
               {
                 step: "01",
                 title: "Share your concern",
-                desc: "Schedule a private consultation and share your skin or hair concern. We start without pre-packaged templates."
+                desc: "Schedule a private consultation and describe your skin or hair concern. We begin without pre-packaged assumptions.",
               },
               {
                 step: "02",
-                title: "Receive considered assessment",
-                desc: "Our dermatologists conduct diagnostic magnification to examine your cellular biology and skin barrier health."
+                title: "Receive a considered assessment",
+                desc: "Our dermatologists conduct a thorough diagnostic evaluation and review your skin barrier before outlining any direction.",
               },
               {
                 step: "03",
                 title: "Review suitable care options",
-                desc: "Explore a conservative medical plan outlining clinical therapies, expected sessions, costs, and downtime."
+                desc: "We present a conservative care plan with clinical options, approximate costs, and honest recovery considerations.",
               },
               {
                 step: "04",
-                title: "Thoughtful follow-up",
-                desc: "We monitor biological healing at set milestones, adapting home protocols to support lasting, natural integrity."
-              }
+                title: "Continue with thoughtful follow-up",
+                desc: "Milestone check-ins allow us to adapt your plan, support healing, and ensure lasting results that feel natural.",
+              },
             ].map((journey, i) => (
-              <div key={i} className="relative flex flex-col items-start text-left md:text-center md:items-center">
-                <div className="w-12 h-12 rounded-sm bg-white border border-brand-stone flex items-center justify-center font-serif text-lg font-medium text-brand-green-deep shadow-sm mb-6 z-10 md:mx-auto">
+              <div key={i} className="relative flex flex-col items-center text-center">
+                <div className="w-12 h-12 bg-white border border-brand-stone flex items-center justify-center font-serif text-lg font-medium text-brand-green-deep shadow-sm mb-6 z-10">
                   {journey.step}
                 </div>
                 <Heading level={4} size="sm" className="mb-2">
                   {journey.title}
                 </Heading>
-                <p className="text-xs text-brand-text-muted leading-relaxed max-w-xs md:mx-auto">
+                <p className="text-sm text-brand-text-muted leading-relaxed max-w-[200px] mx-auto">
                   {journey.desc}
                 </p>
               </div>
             ))}
           </div>
+
+          <div className="mt-16 text-center">
+            <Link
+              href="/book"
+              className="inline-flex items-center justify-center h-12 px-7 bg-brand-green-deep text-white text-sm font-medium hover:bg-brand-sage-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage focus-visible:ring-offset-2 rounded-sm"
+            >
+              Start with a consultation
+            </Link>
+          </div>
         </Container>
       </Section>
 
-      {/* SECTION 7: TECHNOLOGY & SAFETY */}
-      <Section spacing="default" surface="stone" className="bg-brand-stone/10">
+      {/* ── TECHNOLOGY & SAFETY ── */}
+      <Section spacing="default" className="bg-brand-ivory-dark border-y border-brand-stone/40">
         <Container>
           <SectionHeader
             eyebrow="Safety First"
             title="Technology & clinical safety"
-            description="Our focus is medical accountability. We maintain strict procedural environments and carefully calibrated energy platforms."
+            description="Our focus is medical accountability. We maintain controlled procedural environments and carefully calibrated clinical platforms."
             layout="split"
             className="mb-12 md:mb-16"
           />
 
           <Grid cols={4} gap="md">
-            {technologiesData.map((tech) => (
-              <Card key={tech.id} surface="white" className="p-6 border border-brand-stone/40">
-                <Stack gap="sm">
-                  <div className="w-8 h-8 rounded-sm bg-brand-sage/10 text-brand-sage-dark flex items-center justify-center mb-2">
-                    <Check className="w-4 h-4" />
-                  </div>
-                  <Heading level={4} size="sm">
-                    {tech.name}
-                  </Heading>
-                  <p className="text-xs text-brand-text-muted leading-relaxed">
-                    {tech.description}
-                  </p>
-                </Stack>
-              </Card>
+            {technologiesData.map((tech, idx) => (
+              <div key={tech.id} className="p-6 bg-white border border-brand-stone/40">
+                <div className="w-7 h-7 bg-brand-sage/10 text-brand-sage-dark flex items-center justify-center mb-4">
+                  <Check className="w-3.5 h-3.5" aria-hidden="true" />
+                </div>
+                <Heading level={4} size="sm" className="mb-2">{tech.name}</Heading>
+                <p className="text-xs text-brand-text-muted leading-relaxed">{tech.description}</p>
+              </div>
             ))}
           </Grid>
+
+          <p className="mt-8 text-xs text-brand-text-muted italic text-center max-w-2xl mx-auto">
+            Technology and protocol information requires clinic verification before production use. Treatment suitability is assessed according to individual characteristics.
+          </p>
         </Container>
       </Section>
 
-      {/* SECTION 8: RESPONSIBLE RESULTS CONCEPT */}
+      {/* ── RESPONSIBLE RESULTS ── */}
       <Section spacing="default" surface="ivory">
         <Container>
           <SectionHeader
             eyebrow="Evidence of Care"
             title="Responsible results"
-            description="Dermatology results vary based on biological response, skin type, and absolute compliance. We do not use misleading before-and-after photographs."
+            description="Biological responses vary. We do not use misleading before-and-after imagery. Client-approved case studies will be shared privately."
             layout="stacked"
             align="center"
             className="mb-12 text-center"
           />
 
-          <div className="max-w-4xl mx-auto border border-brand-stone/60 bg-white p-8 md:p-12 rounded-sm text-center relative overflow-hidden">
-            <div className="absolute top-4 right-4 bg-brand-stone/50 px-2 py-0.5 text-[9px] font-mono tracking-wider uppercase rounded-sm">
-              Clinical Policy
-            </div>
-            
-            <div className="flex flex-col items-center justify-center py-8">
-              <div className="p-4 rounded-full bg-brand-stone/30 text-brand-text-muted mb-4">
-                <Lock className="w-8 h-8 opacity-40" />
-              </div>
-              <p className="font-serif text-lg md:text-xl text-brand-green-deep font-medium italic mb-2">
-                &ldquo;Client-approved result imagery will appear here.&rdquo;
-              </p>
-              <p className="text-xs text-brand-text-muted max-w-md leading-relaxed mb-6">
-                To respect absolute patient confidentiality and medical ethics, Aurevia only shares verified clinical cases inside private treatment suites under strict professional guidelines.
-              </p>
-              
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full pt-6 border-t border-brand-stone/30 text-left">
-                <div>
-                  <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block">Classification</span>
-                  <span className="text-xs text-brand-green-deep font-medium">Acne Scar Care</span>
-                </div>
-                <div>
-                  <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block">Session Count</span>
-                  <span className="text-xs text-brand-green-deep font-medium">4 Sessions</span>
-                </div>
-                <div>
-                  <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block">Timeframe</span>
-                  <span className="text-xs text-brand-green-deep font-medium">16 Weeks</span>
-                </div>
-                <div>
-                  <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block">Patient Consent</span>
-                  <span className="text-xs text-brand-green-deep font-medium">Active (Private Option)</span>
-                </div>
-              </div>
+          <div className="max-w-3xl mx-auto border border-brand-stone/60 bg-white p-8 md:p-12 relative overflow-hidden">
+            <div className="absolute top-4 right-4">
+              <span className="text-[9px] tracking-widest font-mono uppercase bg-brand-stone/40 px-2 py-0.5 text-brand-text-muted">
+                Clinical Policy
+              </span>
             </div>
 
-            <div className="pt-6 border-t border-brand-stone/20 text-center">
-              <p className="text-[10px] text-brand-text-muted/70 italic leading-relaxed">
-                *Disclaimer: All clinical images are verified cases under strict supervision. Biological response differs significantly between skin characteristics and recovery compliance. Safe results are primary.
+            <div className="flex flex-col items-center text-center py-6 gap-4">
+              <div className="p-4 bg-brand-stone/20 text-brand-text-muted">
+                <Lock className="w-6 h-6 opacity-30" aria-hidden="true" />
+              </div>
+              <p className="font-serif text-xl md:text-2xl text-brand-green-deep font-medium italic max-w-xl text-balance">
+                &ldquo;Client-approved result imagery will appear here.&rdquo;
+              </p>
+              <p className="text-sm text-brand-text-muted max-w-md leading-relaxed">
+                To respect patient confidentiality and medical ethics, Aurevia only shares verified clinical cases privately, under strict professional guidelines.
               </p>
             </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 pt-6 border-t border-brand-stone/30">
+              {[
+                { label: "Classification", value: "Acne Scar Care" },
+                { label: "Session count", value: "To be verified" },
+                { label: "Treatment interval", value: "To be verified" },
+                { label: "Consent status", value: "Required" },
+              ].map(({ label, value }) => (
+                <div key={label}>
+                  <span className="text-[10px] uppercase tracking-wider font-mono text-brand-text-muted block mb-0.5">{label}</span>
+                  <span className="text-xs text-brand-green-deep font-medium">{value}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-6 text-[11px] text-brand-text-muted/70 italic leading-relaxed text-center">
+              Results vary. Biological response differs significantly between skin characteristics and recovery compliance. Client approval is required before production.
+            </p>
           </div>
         </Container>
       </Section>
 
-      {/* SECTION 9: CLINIC EXPERIENCE GALLERY */}
-      <Section spacing="default" surface="stone" className="bg-brand-stone/20">
+      {/* ── CLINIC GALLERY ── */}
+      <Section spacing="default" className="bg-brand-ivory-dark">
         <Container>
           <SectionHeader
             eyebrow="Our Environment"
             title="The clinic experience"
-            description="Every detail of our space is curated to provide a quiet, tranquil environment that minimizes medical anxiety and supports your calm state."
+            description="Every detail of our space is curated to support a calm, private, and considered clinical environment."
             layout="split"
-            className="mb-12 md:mb-16"
+            className="mb-12 md:mb-14"
           />
 
-          <Grid cols={4} gap="md">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
                 title: "Reception & Lounge",
-                desc: "A warm, ivory-textured lounge designed with natural timber elements and soft ambient lighting.",
+                desc: "A warm, ivory-textured lounge designed with natural light and calm materials.",
                 image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200",
-                fallback: "Aurevia Reception Suite"
+                fallback: "Aurevia reception suite",
+                aspect: "aspect-[4/3]",
               },
               {
                 title: "Consultation Suite",
-                desc: "A spacious and completely sound-insulated environment focused on open clinical diagnostics.",
+                desc: "A spacious, sound-insulated space focused on open clinical diagnostics.",
                 image: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=1200",
-                fallback: "Consultation Suite"
+                fallback: "Consultation suite",
+                aspect: "aspect-[3/4]",
               },
               {
                 title: "Advanced Laser Suite",
-                desc: "Maintained under clinical parameters to deliver precision dermal treatments with safety.",
+                desc: "Maintained under clinical parameters for precision dermal treatments.",
                 image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200",
-                fallback: "Clinical treatment room"
+                fallback: "Clinical treatment room",
+                aspect: "aspect-[3/4]",
               },
               {
-                title: "Recovery & Care Suite",
-                desc: "A quiet post-procedure relaxation bay with customized care services and privacy.",
+                title: "Recovery & Care Bay",
+                desc: "A quiet post-procedure relaxation bay with customized care and privacy.",
                 image: "https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&q=80&w=1200",
-                fallback: "Aurevia Private Lounge"
-              }
+                fallback: "Recovery and care suite",
+                aspect: "aspect-[4/3]",
+              },
             ].map((gal, idx) => (
-              <Card key={idx} surface="white" className="group overflow-hidden">
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-brand-stone/10">
+              <div key={idx} className="flex flex-col gap-3 group">
+                <div className={`relative ${gal.aspect} w-full overflow-hidden bg-brand-stone/20`}>
                   <ResponsiveMedia
                     src={gal.image}
                     alt={gal.fallback}
                     fill
-                    sizes="(max-width: 640px) 100vw, 25vw"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="transition-transform duration-500 group-hover:scale-[1.02]"
                   />
                 </div>
-                <CardContent className="p-6">
-                  <Heading level={4} size="xs" className="mb-1 text-brand-green-deep">
-                    {gal.title}
-                  </Heading>
-                  <p className="text-xs text-brand-text-muted leading-relaxed">
-                    {gal.desc}
-                  </p>
-                </CardContent>
-              </Card>
+                <div>
+                  <p className="text-sm font-serif font-medium text-brand-green-deep mb-0.5">{gal.title}</p>
+                  <p className="text-xs text-brand-text-muted leading-relaxed">{gal.desc}</p>
+                </div>
+              </div>
             ))}
-          </Grid>
+          </div>
         </Container>
       </Section>
 
-      {/* SECTION 10: EDUCATIONAL INSIGHTS */}
+      {/* ── INSIGHTS ── */}
       <Section spacing="default" surface="ivory">
         <Container>
           <SectionHeader
             eyebrow="Dermatological Insights"
             title="Educational insights"
-            description="Our dermatologists regularly publish evidence-led articles to demystify skin science and support considered home regimens."
+            description="Evidence-led articles from our dermatologists to demystify skin science and support considered home care."
             layout="split"
-            className="mb-12 md:mb-16"
+            className="mb-12 md:mb-14"
           />
 
           <Grid cols={3} gap="lg">
             {insightsData.map((ins) => (
-              <Card key={ins.id} surface="white" className="flex flex-col h-full group" interaction="hover">
-                <div className="relative aspect-[16/10] w-full bg-brand-stone/10 overflow-hidden">
+              <div key={ins.id} className="flex flex-col h-full group border border-brand-stone/40 hover:border-brand-sand transition-all duration-300 bg-white overflow-hidden">
+                <div className="relative aspect-[16/9] w-full bg-brand-stone/10 overflow-hidden">
                   <ResponsiveMedia
                     src={ins.image}
                     alt={ins.title}
                     fill
                     sizes="(max-width: 768px) 100vw, 33vw"
+                    className="transition-transform duration-500 group-hover:scale-[1.02]"
                   />
-                  <div className="absolute bottom-4 left-4">
+                  <div className="absolute bottom-3 left-3">
                     <span className="text-[10px] tracking-wider uppercase bg-brand-green-deep text-white px-2.5 py-1 font-mono">
                       {ins.category}
                     </span>
                   </div>
                 </div>
-                <CardContent className="flex-1 flex flex-col justify-between p-6">
-                  <Stack gap="sm">
-                    <div className="flex justify-between items-center text-[10px] font-mono text-brand-text-muted">
+                <div className="flex-1 flex flex-col justify-between p-6">
+                  <div>
+                    <div className="flex justify-between items-center text-[10px] font-mono text-brand-text-muted mb-3">
                       <span>{ins.publishDate}</span>
-                      <span>{ins.readTime}</span>
+                      <span className="flex items-center gap-1">
+                        <BookOpen className="w-3 h-3" aria-hidden="true" />
+                        {ins.readTime}
+                      </span>
                     </div>
-                    <Heading level={3} size="sm" className="group-hover:text-brand-sage-dark transition-colors">
+                    <Heading level={3} size="sm" className="mb-2 group-hover:text-brand-sage-dark transition-colors">
                       {ins.title}
                     </Heading>
-                    <p className="text-xs text-brand-text-muted leading-relaxed">
-                      {ins.summary}
-                    </p>
-                  </Stack>
-                  <div className="pt-6 mt-6 border-t border-brand-stone/30">
-                    <Button as="link" href={`/insights/${ins.id}`} variant="quiet">
-                      Read scientific guide <ArrowRight className="w-4 h-4 ml-1 inline-block" />
-                    </Button>
+                    <p className="text-sm text-brand-text-muted leading-relaxed">{ins.summary}</p>
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="pt-5 mt-5 border-t border-brand-stone/30">
+                    <Link
+                      href={`/insights/${ins.id}`}
+                      className="inline-flex items-center gap-1.5 text-sm font-medium text-brand-green-deep hover:text-brand-sage-dark transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sage rounded-sm group/link"
+                    >
+                      Read article
+                      <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" aria-hidden="true" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
             ))}
           </Grid>
         </Container>
       </Section>
 
-      {/* SECTION 11: FAQ */}
-      <Section spacing="default" surface="stone" className="bg-brand-stone/10 border-t border-brand-stone/40">
+      {/* ── FAQ ── */}
+      <Section spacing="default" className="bg-brand-ivory-dark border-t border-brand-stone/40">
         <Container size="narrow">
           <SectionHeader
             eyebrow="Clinical FAQ"
             title="Frequently asked questions"
-            description="We believe in clear, uncompromised answers. Browse answers to our standard clinical parameters."
+            description="Clear, honest answers to common questions about our consultation process."
             layout="stacked"
             align="center"
             className="mb-12 text-center"
           />
 
-          <Stack gap="md" className="max-w-2xl mx-auto">
-            {faqsData.map((faq) => {
+          <div className="flex flex-col gap-0 border border-brand-stone/50 overflow-hidden">
+            {faqsData.map((faq, idx) => {
               const isOpen = openFaqId === faq.id;
               return (
-                <div 
-                  key={faq.id} 
-                  className="bg-white border border-brand-stone/50 rounded-sm overflow-hidden transition-all duration-300"
+                <div
+                  key={faq.id}
+                  className={`bg-white border-b border-brand-stone/50 last:border-b-0`}
                 >
                   <button
                     onClick={() => toggleFaq(faq.id)}
-                    className="w-full flex items-center justify-between p-6 text-left font-serif text-brand-green-deep hover:text-brand-sage-dark focus-visible:outline-none focus-visible:bg-brand-stone/10 transition-colors"
+                    className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-brand-ivory/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-brand-sage transition-colors"
                     aria-expanded={isOpen}
+                    id={`faq-btn-${faq.id}`}
+                    aria-controls={`faq-panel-${faq.id}`}
                   >
-                    <span className="font-serif font-medium text-base sm:text-lg leading-relaxed">
+                    <span className="font-serif font-medium text-base text-brand-green-deep leading-snug pr-4 text-pretty">
                       {faq.question}
                     </span>
-                    <span className="shrink-0 ml-4 p-1 rounded-full bg-brand-stone/20 text-brand-text-muted">
-                      {isOpen ? <Minus className="w-4 h-4" /> : <Plus className="w-4 h-4" />}
+                    <span className="shrink-0 w-7 h-7 flex items-center justify-center bg-brand-stone/30 text-brand-text-muted">
+                      {isOpen ? (
+                        <Minus className="w-3.5 h-3.5" aria-hidden="true" />
+                      ) : (
+                        <Plus className="w-3.5 h-3.5" aria-hidden="true" />
+                      )}
                     </span>
                   </button>
 
                   <AnimatePresence initial={false}>
                     {isOpen && (
                       <motion.div
+                        id={`faq-panel-${faq.id}`}
+                        role="region"
+                        aria-labelledby={`faq-btn-${faq.id}`}
                         initial={{ height: 0, opacity: 0 }}
                         animate={{ height: "auto", opacity: 1 }}
                         exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.25, ease: "easeInOut" }}
+                        transition={{ duration: 0.22, ease: "easeInOut" }}
+                        className="overflow-hidden"
                       >
-                        <div className="px-6 pb-6 pt-2 border-t border-brand-stone/20 text-sm text-brand-text-muted leading-relaxed">
+                        <div className="px-6 pb-5 pt-1 border-t border-brand-stone/30 text-sm text-brand-text-muted leading-relaxed">
                           {faq.answer}
                         </div>
                       </motion.div>
@@ -686,37 +684,47 @@ export function HomepageSections() {
                 </div>
               );
             })}
-          </Stack>
+          </div>
         </Container>
       </Section>
 
-      {/* SECTION 12: FINAL CONSULTATION CTA */}
-      <Section spacing="default" surface="dark" className="relative overflow-hidden bg-brand-green-deep text-white text-center py-24">
+      {/* ── FINAL CONSULTATION CTA ── */}
+      <Section spacing="default" className="bg-brand-green-deep text-white">
         <Container size="narrow">
-          <Stack gap="lg" align="center" className="max-w-xl mx-auto">
-            <Eyebrow className="text-brand-sand">Start Your Skin Journey</Eyebrow>
-            <Heading level={2} size="xl" className="text-white">
-              Schedule your diagnostic private consultation
+          <div className="text-center max-w-2xl mx-auto py-6">
+            <p className="text-xs tracking-[0.15em] uppercase font-sans font-medium text-brand-sand mb-4">
+              Start your skin journey
+            </p>
+            <Heading level={2} size="xl" className="text-white mb-5 text-balance">
+              Schedule your private consultation
             </Heading>
-            <BodyText size="lg" className="text-brand-stone/80">
-              Meet our dermatologists in an unhurried, evidence-led clinical assessment tailored entirely to your skin barrier health and structure.
+            <BodyText size="lg" className="text-white/65 mb-8 leading-relaxed">
+              Meet with a specialist profile in an unhurried consultation designed to understand your skin or hair concerns and discuss suitable next steps.
             </BodyText>
-            
-            <div className="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto justify-center">
-              <Button as="link" href="/book" variant="primary" className="bg-brand-sand text-brand-green-deep border-brand-sand hover:bg-brand-sand/90">
+
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Link
+                href="/book"
+                className="inline-flex items-center justify-center h-12 px-7 bg-brand-sand text-brand-green-deep text-sm font-medium hover:bg-brand-sand/85 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-sand focus-visible:ring-offset-2 focus-visible:ring-offset-brand-green-deep rounded-sm"
+              >
                 Book a consultation
-              </Button>
-              <Button as="link" href="/contact" variant="secondary" className="border-white text-white hover:bg-white/10">
-                Contact the clinic
-              </Button>
+              </Link>
+              <a
+                href={`tel:${clinicConfig.contact.phone.replace(/[^0-9+]/g, '')}`}
+                className="inline-flex items-center justify-center h-12 px-7 border border-white/20 text-white text-sm font-medium hover:bg-white/10 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-brand-green-deep rounded-sm"
+              >
+                Call clinic
+              </a>
             </div>
 
-            <div className="pt-8 border-t border-brand-stone/20 w-full flex items-center justify-center gap-6 text-xs text-brand-stone/60">
-              <span>Appointment required</span>
-              <span className="w-1.5 h-1.5 rounded-full bg-brand-sand" />
+            <div className="mt-10 pt-8 border-t border-white/10 flex items-center justify-center gap-6 text-xs text-white/40">
+              <span>By appointment</span>
+              <span className="w-1 h-1 rounded-full bg-brand-sand/60" aria-hidden="true" />
               <span>Indiranagar, Bengaluru</span>
+              <span className="w-1 h-1 rounded-full bg-brand-sand/60" aria-hidden="true" />
+              <span>Mon – Sat</span>
             </div>
-          </Stack>
+          </div>
         </Container>
       </Section>
     </>

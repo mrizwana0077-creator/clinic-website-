@@ -30,7 +30,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} bg-[var(--background)]`}>
       <head>
         <meta name="theme-color" content={brandConfig.colors.themeColor} />
       </head>
