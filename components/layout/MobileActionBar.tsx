@@ -13,7 +13,7 @@ export function MobileActionBar() {
       aria-label="Quick clinic actions"
       suppressHydrationWarning
     >
-      <div className="flex items-stretch h-14">
+      <div className="flex items-stretch h-14" suppressHydrationWarning>
         {navigationConfig.mobileActions.map((action, i) => {
           const Icon = action.icon === 'phone' ? Phone : action.icon === 'message' ? MessageCircle : Calendar;
           const isBook = action.label === 'Book';
