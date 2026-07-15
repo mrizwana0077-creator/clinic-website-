@@ -35,7 +35,6 @@ import {
   technologiesData,
   insightsData,
   faqsData,
-  galleryData,
 } from "@/config/demoData";
 import { clinicConfig } from "@/config/clinic";
 import { motion, AnimatePresence } from "motion/react";
@@ -516,28 +515,53 @@ export function HomepageSections() {
             className="mb-12 md:mb-14"
           />
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {galleryData.map((gal, idx) => {
-              // Alternate aspect ratios for visual variety
-              const aspect = idx % 3 === 1 ? "aspect-[3/4]" : "aspect-[4/3]";
-              return (
-                <div key={gal.id} className="flex flex-col gap-3 group">
-                  <div className={`relative ${aspect} w-full overflow-hidden bg-brand-stone/20`}>
-                    <ResponsiveMedia
-                      src={gal.image}
-                      alt={gal.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="transition-transform duration-500 group-hover:scale-[1.02]"
-                    />
-                  </div>
-                  <div>
-                    <p className="text-sm font-serif font-medium text-brand-green-deep mb-0.5">{gal.title}</p>
-                    <p className="text-xs text-brand-text-muted leading-relaxed">{gal.description}</p>
-                  </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                title: "Reception & Lounge",
+                desc: "A warm, ivory-textured lounge designed with natural light and calm materials.",
+                image: "https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1200",
+                fallback: "Aurevia reception suite",
+                aspect: "aspect-[4/3]",
+              },
+              {
+                title: "Consultation Suite",
+                desc: "A spacious, sound-insulated space focused on open clinical diagnostics.",
+                image: "https://images.unsplash.com/photo-1527613426441-4da17471b66d?auto=format&fit=crop&q=80&w=1200",
+                fallback: "Consultation suite",
+                aspect: "aspect-[3/4]",
+              },
+              {
+                title: "Advanced Laser Suite",
+                desc: "Maintained under clinical parameters for precision dermal treatments.",
+                image: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1200",
+                fallback: "Clinical treatment room",
+                aspect: "aspect-[3/4]",
+              },
+              {
+                title: "Recovery & Care Bay",
+                desc: "A quiet post-procedure relaxation bay with customized care and privacy.",
+                image: "https://images.unsplash.com/photo-1629909615184-74f495363b67?auto=format&fit=crop&q=80&w=1200",
+                fallback: "Recovery and care suite",
+                aspect: "aspect-[4/3]",
+              },
+            ].map((gal, idx) => (
+              <div key={idx} className="flex flex-col gap-3 group">
+                <div className={`relative ${gal.aspect} w-full overflow-hidden bg-brand-stone/20`}>
+                  <ResponsiveMedia
+                    src={gal.image}
+                    alt={gal.fallback}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className="transition-transform duration-500 group-hover:scale-[1.02]"
+                  />
                 </div>
-              );
-            })}
+                <div>
+                  <p className="text-sm font-serif font-medium text-brand-green-deep mb-0.5">{gal.title}</p>
+                  <p className="text-xs text-brand-text-muted leading-relaxed">{gal.desc}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </Container>
       </Section>

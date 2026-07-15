@@ -67,7 +67,7 @@ export function HomepageHero() {
           {/* Main hero image */}
           <div className="relative w-full aspect-[4/3] sm:aspect-[16/9] lg:aspect-auto lg:h-full min-h-[300px]">
             <Image
-              src="/images/hero/aurevia-clinic-hero.png"
+              src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?auto=format&fit=crop&q=80&w=1600"
               alt="A calm, private clinical consultation room at Aurevia with soft ivory tones and natural light"
               fill
               priority

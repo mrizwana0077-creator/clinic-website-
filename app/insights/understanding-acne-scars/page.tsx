@@ -58,8 +58,8 @@ export default function UnderstandingAcneScarsPage() {
 
             <div className="relative aspect-video w-full bg-brand-stone/10 overflow-hidden rounded-sm my-8">
               <ResponsiveMedia 
-                src="/images/treatments/acne-scar-consultation.png" 
-                alt="Clinical dermatology assessment instruments in a premium consultation environment"
+                src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&q=80&w=1200" 
+                alt="Aurevia clinical microneedling equipment closeup"
                 fill
               />
             </div>
